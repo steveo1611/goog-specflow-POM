@@ -12,6 +12,7 @@ namespace goog_specflow_POM.Pages
         readonly By userButton = By.XPath("//*[@id='identifierNext']/span/span");
         readonly By password = By.XPath("//*[@id='password']//input[@name='password']");
         readonly By passwordButton = By.XPath("//*[@id='passwordNext']//span[text()='Next']");
+        readonly By passwordPage = By.Name("password");
 
         public LogInPage(IWebDriver driver)
         {
@@ -19,7 +20,7 @@ namespace goog_specflow_POM.Pages
         }
         public void TypeUserName()
         {
-            driver.FindElement(userName).SendKeys("Test");
+            driver.FindElement(userName).SendKeys("xxx");
         }
         public void PressUserButton()
         {
@@ -28,15 +29,12 @@ namespace goog_specflow_POM.Pages
 
         public void TypePassword()
         {
-            driver.FindElement(password).SendKeys(" ");
+            driver.FindElement(password).SendKeys("xxx");
         }
 
         public void PressPasswordButton()
         {
             driver.FindElement(passwordButton).Click();
         }
-
-        // user name
-        // password
     }
 }
