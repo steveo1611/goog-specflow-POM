@@ -20,7 +20,7 @@ namespace goog_specflow_POM.Pages
         }
         public void TypeUserName()
         {
-            driver.FindElement(userName).SendKeys("xxx");
+            driver.FindElement(userName).SendKeys("zzz");
         }
         public void PressUserButton()
         {
@@ -29,7 +29,7 @@ namespace goog_specflow_POM.Pages
 
         public void TypePassword()
         {
-            driver.FindElement(password).SendKeys("xxx");
+            driver.FindElement(password).SendKeys("zzz");
         }
 
         public void PressPasswordButton()
