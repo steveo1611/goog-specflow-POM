@@ -1,11 +1,13 @@
-﻿Feature: SendVerifyEmail
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+﻿Feature: SendandVerifyEmail
+	Testing logging into GMail sending email to self and verifying email.
 
 @mytag
-Scenario: Add two numbers
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+Scenario: Verify GMail send email function
+	Given I connect to gmail website
+	And I verify I successfully log into GMail account
+	Then I verify I am on the Inbox page
+	When I compose new email
+	And Send email to myself
+	Then I will vefify the sent email will be shown in inbox
+	And The email content can be validated
+	And I will logout
