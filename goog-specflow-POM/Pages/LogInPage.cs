@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TechTalk.SpecFlow;
 
 namespace goog_specflow_POM.Pages
 {
@@ -20,6 +21,7 @@ namespace goog_specflow_POM.Pages
         }
         public void TypeUserName()
         {
+            var driver = ScenarioContext.Current.Get<IWebDriver>("webdriver");
             driver.FindElement(userName).SendKeys("zzz");
         }
         public void PressUserButton()
@@ -29,7 +31,7 @@ namespace goog_specflow_POM.Pages
 
         public void TypePassword()
         {
-            driver.FindElement(password).SendKeys("zzz");
+            driver.FindElement(password).SendKeys("zzzz");
         }
 
         public void PressPasswordButton()
