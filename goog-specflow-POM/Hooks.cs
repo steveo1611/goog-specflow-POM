@@ -14,12 +14,12 @@ namespace goog_specflow_POM
 {
     [Binding]
 
-    public sealed class Hooks
+    public class Hooks
     {
         static IWebDriver driver = null;
         private static readonly string ProjectFilesPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().
             Location) + "\\..\\..";
-        public readonly ScenarioContext context;
+        private readonly ScenarioContext context;
         private readonly FeatureContext featureContext;
         private static TestContext _testContextInstance;
 
@@ -30,10 +30,9 @@ namespace goog_specflow_POM
             _testContextInstance = testContextInstance;
         }
 
-        [BeforeScenario(Order = 1)]
+        [BeforeScenario]
         public void BeforeScenario()
         {
-            //    objectContainer.RegisterInstanceAs<IWebDriver>(driver);
             DriverFactory.InitBrowser("Chrome");
             driver = DriverFactory.Driver;
             context.Add("webdriver", driver);

@@ -12,44 +12,20 @@ namespace goog_specflow_POM.Steps
     [Binding]
        public class SendandVerifyEmailSteps
     {
-        //private readonly IObjectContainer objectContainer;
         private readonly ScenarioContext context;
         static IWebDriver driver = null;
         //static IWebDriver driver = ScenarioContext.Current.Get<IWebDriver>("webdriver");
         LogInPage login = new LogInPage(driver);
       public SendandVerifyEmailSteps(ScenarioContext injectedContext)
         {
-
-       //     this.objectContainer = objectContainer; 
-            context = injectedContext;
+             context = injectedContext;
         }
-        // IWebDriver driver = (IWebDriver)context.Current["webdriver"];
 
-        /*  #####################################       old hacky code 
-                //  readonly IWebDriver driver = (IWebDriver)FeatureContext.Current["driver"];
-                private readonly IObjectContainer objectContainer;
-                    public SendandVerifyEmailSteps(IObjectContainer objectContainer)
-                    {
-                        this.objectContainer = objectContainer;
-                    }
-                static IWebDriver driver = null;
-                [BeforeScenario(Order = 2)]
-         //       public void BeforeScenario()
-                {
-                 /*   ChromeOptions options = new ChromeOptions();
-                    options.AddArguments(@"d:\\projects\\selenium\\", "--incognito");
-                    driver = new ChromeDriver("d:\\projects\\selenium\\", options);
-                    driver.Manage().Window.Maximize();
-
-          //          objectContainer.RegisterInstanceAs<IWebDriver>(driver);
-                }
-        ###########################
-        */
 
     [Given(@"I connect to gmail website")]
         public void GivenIConnectToGmailWebsite()
         {
-        var driver = context.driver;
+        var driver = context(driver);
             driver.Navigate().GoToUrl("https://www.google.com/gmail");
         //verify on correct page
         }
