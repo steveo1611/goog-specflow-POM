@@ -14,7 +14,6 @@ namespace goog_specflow_POM.Steps
     {
         private readonly ScenarioContext context;
         static IWebDriver driver = null;
-        //static IWebDriver driver = ScenarioContext.Current.Get<IWebDriver>("webdriver");
         LogInPage login = new LogInPage(driver);
       public SendandVerifyEmailSteps(ScenarioContext injectedContext)
         {
@@ -25,9 +24,10 @@ namespace goog_specflow_POM.Steps
     [Given(@"I connect to gmail website")]
         public void GivenIConnectToGmailWebsite()
         {
-        var driver = context(driver);
+            var driver = (IWebDriver)context["webdriver"];  //fixed line!!!!
+            
             driver.Navigate().GoToUrl("https://www.google.com/gmail");
-        //verify on correct page
+            //verify on correct page
         }
         
         [Given(@"I verify I successfully (.*) (.*) GMail account")]
