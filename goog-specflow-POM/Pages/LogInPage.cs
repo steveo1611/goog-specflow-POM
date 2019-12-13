@@ -1,7 +1,9 @@
-﻿using OpenQA.Selenium;
+﻿using Newtonsoft.Json.Linq;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using goog_specflow_POM.utils;
 using TechTalk.SpecFlow;
 
 namespace goog_specflow_POM.Pages
@@ -9,6 +11,7 @@ namespace goog_specflow_POM.Pages
    public class LogInPage
     {
         private readonly IWebDriver driver;
+        readonly JObject fileReader = new ReadJSONFile().OpenJsonFile("CredentialsFilePath");
         readonly By userName = By.XPath("//*[@id='identifierId']");
         readonly By userButton = By.XPath("//*[@id='identifierNext']/span/span");
         readonly By password = By.XPath("//*[@id='password']//input[@name='password']");
@@ -22,7 +25,7 @@ namespace goog_specflow_POM.Pages
         public void TypeUserName()
         {
             var driver = ScenarioContext.Current.Get<IWebDriver>("webdriver");
-            driver.FindElement(userName).SendKeys("zzz");
+            driver.FindElement(userName).SendKeys("testfieldsteve@gmail.com");
         }
         public void PressUserButton()
         {
@@ -31,7 +34,7 @@ namespace goog_specflow_POM.Pages
 
         public void TypePassword()
         {
-            driver.FindElement(password).SendKeys("zzzz");
+            driver.FindElement(password).SendKeys("J0hn3:16");
         }
 
         public void PressPasswordButton()
