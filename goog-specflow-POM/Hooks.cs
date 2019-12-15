@@ -36,6 +36,7 @@ namespace goog_specflow_POM
             DriverFactory.InitBrowser("Chrome");
             driver = DriverFactory.Driver;
             context.Add("webdriver", driver);
+            featureContext.Add("Environment", "gmail");
         }
 
     }

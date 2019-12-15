@@ -1,4 +1,4 @@
-﻿using BoDi;
+﻿using Newtonsoft.Json.Linq;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -6,6 +6,7 @@ using TechTalk.SpecFlow;
 using goog_specflow_POM.Pages;
 using goog_specflow_POM;
 using System.Threading;
+using goog_specflow_POM.utils;
 
 namespace goog_specflow_POM.Steps
 {
@@ -14,14 +15,15 @@ namespace goog_specflow_POM.Steps
     {
         private readonly ScenarioContext context;
         static IWebDriver driver = null;
-        LogInPage login = new LogInPage(driver);
-      public SendandVerifyEmailSteps(ScenarioContext injectedContext)
+ //       LogInPage login = new LogInPage(driver);
+      public SendandVerifyEmailSteps(ScenarioContext injectedContext )
         {
              context = injectedContext;
         }
 
+ //       readonly JObject fileReader = new ReadJSONFile().OpenJsonFile("configs\\Credentials.json");
 
-    [Given(@"I connect to gmail website")]
+        [Given(@"I connect to gmail website")]
         public void GivenIConnectToGmailWebsite()
         {
             var driver = (IWebDriver)context["webdriver"];  //fixed line!!!!
@@ -31,17 +33,22 @@ namespace goog_specflow_POM.Steps
         }
         
         [Given(@"I verify I successfully (.*) (.*) GMail account")]
-        public void GivenIVerifyISuccessfullyLogIntoGMailAccount(string userName, string password)
+        public void GivenIVerifyISuccessfullyLogIntoGMailAccount(string userType, string passwordType)
         {
+            //string userName = fileReader[[gmail].ToString()][userType]["userName"].ToString();
+            //  string userName = fileReader.ReadJsonFile["gmail"].ToString(),"valid","userName");
+        //    var driver = (IWebDriver)context["webdriver"];
+       //     string userName = fileReader[FeatureContext.Current["Environment"].ToString()][userType]["userName"].ToString();
+        //    string password = fileReader[FeatureContext.Current["Environment"].ToString()][passwordType]["password"].ToString();
 
-  //          LogInPage login = new LogInPage(driver);
-            login.TypeUserName();
-            Thread.Sleep(1000);
-            login.PressUserButton();
-            Thread.Sleep(1000);
-            login.TypePassword();
-            Thread.Sleep(1000);
-            login.PressPasswordButton();
+            //          LogInPage login = new LogInPage(driver);
+        //    login.TypeUserName(driver, userName);
+        //    Thread.Sleep(1000);
+        //    login.PressUserButton();
+        //    Thread.Sleep(1000);
+        //    login.TypePassword(driver, password);
+       //     Thread.Sleep(1000);
+        //    login.PressPasswordButton();
         }
         
         [When(@"I compose new email")]
