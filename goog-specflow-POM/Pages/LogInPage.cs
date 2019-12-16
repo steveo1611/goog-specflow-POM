@@ -45,10 +45,9 @@ namespace goog_specflow_POM.Pages
             driver.FindElement(passwordButton).Click();
         }
 
-        public void VerifyHomePage(IWebDriver driver)
+/*        public Boolean VerifyHomePage(IWebDriver driver)
         {
-            var home = driver.FindElement(homePage);
-            Assert.IsTrue(home == 'gmail');
         }
+  */      
     }
 }

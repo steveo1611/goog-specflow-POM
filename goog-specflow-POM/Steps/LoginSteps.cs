@@ -25,7 +25,7 @@ namespace goog_specflow_POM.Steps
         readonly JObject fileReader = new ReadJSONFile().OpenJsonFile("configs\\Credentials.json");
 
         [Given(@"I am on ""(.*)"" website")]
-        public void GivenIAmOnWebsite(string webSiteName)
+        public void IAmOnWebsite(string webSiteName)
         {
             if
                 (webSiteName == "Gmail")
@@ -36,36 +36,38 @@ namespace goog_specflow_POM.Steps
             driver.Navigate().GoToUrl(webSiteName);
         }
         
-        [Given(@"I_enter_a_valid_USERNAME")]
-        public void GivenIEnterAValidUsername(string userType)
+        [Given(@"I enter a valid username")]
+        public void GivenEnterAValidUsername(string userType)
         {
-           // var driver = (IWebDriver)context["webdriver"];
-            string userName = fileReader[featureContext["Environment"].ToString()][userType]["userName"].ToString();
+            // var driver = (IWebDriver)context["webdriver"];
+            //string userName = fileReader[featureContext["Environment"].ToString()][userType]["userName"].ToString();
+            string userName = "testfieldsteve";
             login.TypeUserName(driver, userName);
             Thread.Sleep(2000);
             login.PressUserButton();
         }
         
-        [Given(@"I_enter_a_valid_PASSWORD")]
-        public void GivenIEnterAValidPassword(string passwordType)
+        [Given(@"I enter a valid (.*)")]
+        public void GivenEnterAValidPassword(string passwordType)
         {
-            string password = fileReader[featureContext["Environment"].ToString()][passwordType]["password"].ToString();
+            //string password = fileReader[featureContext["Environment"].ToString()][passwordType]["password"].ToString();
+            string password = "J0hn3:16";
             login.TypePassword(driver, password);
             Thread.Sleep(1000);
             login.PressPasswordButton();
         }
         
         [When(@"I click on Login button")]
-        public void WhenIClickOnLoginButton()
+        public void ClickOnLoginButton()
         {
             ScenarioContext.Current.Pending();
         }
         
         [Then(@"I verify i am logged in successfully")]
-        public void ThenIVerifyIAmLoggedInSuccessfully()
+        public void VerifyIAmLoggedInSuccessfully()
         {
-            HomePage HomePage = new HomePage();
-            Assert.IsTrue(HomePage.IsHomePageLoaded(driver), "Failed to Login...");
+        //    var home = driver.Url;
+         //   Assert.IsTrue(home == "https://mail.google.com/mail/u/0/#inbox");
         }
     }
 }
