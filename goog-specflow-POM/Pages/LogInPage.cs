@@ -30,7 +30,7 @@ namespace goog_specflow_POM.Pages
             // var driver = ScenarioContext.Current.Get<IWebDriver>("webdriver");
             driver.FindElement(userName_txtfield).SendKeys(userName);
         }
-        public void PressUserButton()
+        public void PressUserButton(IWebDriver driver)
         {
             driver.FindElement(userButton).Click();
         }
@@ -40,7 +40,7 @@ namespace goog_specflow_POM.Pages
             driver.FindElement(password_txtfield).SendKeys(password);
         }
 
-        public void PressPasswordButton()
+        public void PressPasswordButton(IWebDriver driver)
         {
             driver.FindElement(passwordButton).Click();
         }
