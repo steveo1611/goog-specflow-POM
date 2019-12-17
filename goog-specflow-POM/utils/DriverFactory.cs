@@ -66,7 +66,7 @@ namespace goog_specflow_POM.utils
                         //Log.Debug("Opening browser window...");
                         driver = new ChromeDriver(Path.Combine(ProjectFilesPath + "\\Drivers\\Chrome"), options);
                         driver.Manage().Window.Maximize();
-                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
+                        driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
 //                        driver.Manage().Cookies.DeleteAllCookies();
                         //Log.Debug("Browser window opened...");
 

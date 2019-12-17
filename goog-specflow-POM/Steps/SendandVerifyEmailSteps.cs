@@ -28,27 +28,17 @@ namespace goog_specflow_POM.Steps
         {
             var driver = (IWebDriver)context["webdriver"];  //fixed line!!!!
             
-            driver.Navigate().GoToUrl("https://www.google.com/gmail");
+        //    driver.Navigate().GoToUrl("https://www.google.com/gmail");
             //verify on correct page
         }
         
-        [Given(@"I verify I successfully (.*) (.*) GMail account")]
-        public void GivenIVerifyISuccessfullyLogIntoGMailAccount(string userType, string passwordType)
+        [Given(@"I verify I successfully Log into GMail account")]
+        public void GivenIVerifyISuccessfullyLogIntoGMailAccount()
         {
-            //string userName = fileReader[[gmail].ToString()][userType]["userName"].ToString();
-            //  string userName = fileReader.ReadJsonFile["gmail"].ToString(),"valid","userName");
-        //    var driver = (IWebDriver)context["webdriver"];
-       //     string userName = fileReader[FeatureContext.Current["Environment"].ToString()][userType]["userName"].ToString();
-        //    string password = fileReader[FeatureContext.Current["Environment"].ToString()][passwordType]["password"].ToString();
+            var driver = (IWebDriver)context["webdriver"];
 
-            //          LogInPage login = new LogInPage(driver);
-        //    login.TypeUserName(driver, userName);
-        //    Thread.Sleep(1000);
-        //    login.PressUserButton();
-        //    Thread.Sleep(1000);
-        //    login.TypePassword(driver, password);
-       //     Thread.Sleep(1000);
-        //    login.PressPasswordButton();
+
+
         }
         
         [When(@"I compose new email")]

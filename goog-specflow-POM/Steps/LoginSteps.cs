@@ -43,7 +43,7 @@ namespace goog_specflow_POM.Steps
             //string userName = fileReader[featureContext["Environment"].ToString()][userType]["userName"].ToString();
             string userName = "xxx";
             login.TypeUserName(driver, userName);
-            Thread.Sleep(2000);
+            //Thread.Sleep(2000);
             login.PressUserButton(driver);
         }
         
@@ -72,7 +72,7 @@ namespace goog_specflow_POM.Steps
             var driver = (IWebDriver)context["webdriver"];
             Thread.Sleep(5000);
             string home = driver.Url;
-            Assert.IsTrue(home == "https://mail.google.com/mail/u/0/#inbox");
+            Assert.IsTrue(home == "https://mail.google.com/mail/u/0/#inbox", "Failed to Login...");
         }
     }
 }
