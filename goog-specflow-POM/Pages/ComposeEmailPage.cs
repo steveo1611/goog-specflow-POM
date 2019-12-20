@@ -12,20 +12,25 @@ namespace goog_specflow_POM.Pages
         readonly By toReciept = By.XPath("//*[@name='to']");
         readonly By subject = By.XPath("//*[@name='subjectbox']");
         readonly By sendEmailButton = By.XPath("//*[@class='T-I J-J5-Ji aoO v7 T-I-atl L3']");
-
-        /*  
-
-             driver.FindElement(By.XPath("//*[@role = 'textbox']")).SendKeys(bodyText);
-             driver.FindElement(By.XPath("//*[@class='T-I J-J5-Ji aoO v7 T-I-atl L3']")).Click();
-         */
+        readonly By newMessageEmail = By.XPath("//*[@role='dialog']//div[2]//*[text()='New Message']");
+      
         public ComposeEmailPage(IWebDriver driver)
         {
             this.driver = driver;
         }
 
-        public void ValidateEmailOpen(IWebDriver driver)
+        public bool ValidateEmailOpen(IWebDriver driver)
         {
-            //???
+            try
+            {
+                var element = driver.FindElement(newMessageEmail);
+                return element.Displayed;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
 
         }
 
@@ -49,8 +54,6 @@ namespace goog_specflow_POM.Pages
             driver.FindElement(sendEmailButton).Click();
         }
 
-     
-        // Title = New Message
-        // Send Button
+
     }
 }

@@ -24,12 +24,9 @@ namespace goog_specflow_POM.Steps
        static readonly DateTime stamp = DateTime.Now;
 
        public static DateTime Stamp => stamp;
-
-
-
+                
         //       readonly JObject fileReader = new ReadJSONFile().OpenJsonFile("configs\\Credentials.json");
-
-
+        
         [Given(@"I successfully Log into GMail account")]
         public void GivenISuccessfullyLogIntoGMailAccount()
         {
@@ -51,7 +48,7 @@ namespace goog_specflow_POM.Steps
         {
             var driver = (IWebDriver)context["webdriver"];
             inbox.SelectComposeButton(driver);
-            compose.ValidateEmailOpen(driver);
+            Assert.IsTrue(compose.ValidateEmailOpen(driver));
             compose.EnterToEmail(driver, "xxx" + "@gmail.com");
             compose.EnterSubjectEmail(driver, "THIS IS A TEST " + stamp);
             compose.EnterBodyText(driver, "this is a test");
@@ -65,10 +62,14 @@ namespace goog_specflow_POM.Steps
         }
         
               
-        [Then(@"I will vefify the sent email will be shown in inbox")]
-        public void ThenIWillVefifyTheSentEmailWillBeShownInInbox()
+        [Then(@"I will verify the sent email will be shown in inbox")]
+        public void ThenIWillVerifyTheSentEmailWillBeShownInInbox()
         {
+
             var driver = (IWebDriver)context["webdriver"];
+            Thread.Sleep(5000);
+           string subjectTitle = inbox.VerifySentEmailInInbox(driver);
+            Assert.AreEqual(subjectTitle, "THIS IS A TEST " + stamp);
 
         }
         
@@ -76,14 +77,17 @@ namespace goog_specflow_POM.Steps
         public void ThenTheEmailContentCanBeValidated()
         {
             var driver = (IWebDriver)context["webdriver"];
-
+            string emailBody = inbox.OpenTopEmail(driver);
+            Console.WriteLine(emailBody);
+            Assert.AreEqual(emailBody, "this is a test");
+            inbox.ReturnToInbox(driver);
         }
         
         [Then(@"I will logout")]
         public void ThenIWillLogout()
         {
             var driver = (IWebDriver)context["webdriver"];
-
+            inbox.LogOut(driver);
         }
     }
 }

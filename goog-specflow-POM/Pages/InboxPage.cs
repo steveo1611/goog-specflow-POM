@@ -10,9 +10,10 @@ namespace goog_specflow_POM.Pages
         private readonly IWebDriver driver;
         readonly By composeButton = By.XPath("//*[contains(text(),'Compose')]");
         readonly By accountName = By.XPath("//a[contains(@aria-label, 'Google Account:')]");
-        readonly By inboxMailTopRow = By.XPath("//*[@role='main']/div[6]/div/div/div[2]/div/table/tbody/tr");
-        readonly By inboxMailTopSubject = By.XPath("//*[@role='main']/div[6]/div/div/div[2]/div/table/tbody/tr/td/div/div/div/span/span");
-        // + [text()='<<what is in subject line>>']
+        readonly By inboxMailTopRow = By.XPath("//*[@role='main']/div[6]/div/div/div[2]/div/table/tbody/tr[1]");
+        readonly By inboxMailTopSubject = By.XPath("//*[@role='main']/div[6]/div/div/div[2]/div/table/tbody/tr[1]/td/div/div/div/span/span");
+        readonly By emailTextBody = By.XPath("//*[@style='display:']/div[2]/div[3]/div[3]/div/div");
+        readonly By emailBackToInbox = By.XPath("//*[@aria-label='Back to Inbox']");
         public InboxPage(IWebDriver driver)
         {
             this.driver = driver;
@@ -34,15 +35,26 @@ namespace goog_specflow_POM.Pages
                 return false;
             }
         }
-        public void OpenTopEmail(IWebDriver driver) 
+        public string OpenTopEmail(IWebDriver driver) 
         {
             driver.FindElement(inboxMailTopRow).Click();
+            var element = driver.FindElement(emailTextBody);
+            return element.Text;
         }
 
-        // - view inbound emails
-        
-        // - Sign out button
+        public string VerifySentEmailInInbox(IWebDriver driver)
+        {
+          var element = driver.FindElement(inboxMailTopSubject);
+            return element.Text;
 
-
+        }
+        public void ReturnToInbox(IWebDriver driver)
+        {
+            driver.FindElement(emailBackToInbox).Click();
+        }
+        public void LogOut(IWebDriver driver)
+        {
+            driver.FindElement(accountName).Click();
+        }
     }
 }

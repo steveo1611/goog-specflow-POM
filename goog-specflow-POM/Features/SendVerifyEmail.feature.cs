@@ -134,7 +134,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("Send email to myself", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 10
- testRunner.Then("I will vefify the sent email will be shown in inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I will verify the sent email will be shown in inbox", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 11
  testRunner.And("The email content can be validated", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

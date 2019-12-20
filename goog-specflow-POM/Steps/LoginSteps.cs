@@ -52,7 +52,7 @@ namespace goog_specflow_POM.Steps
         {
             //string password = fileReader[featureContext["Environment"].ToString()][passwordType]["password"].ToString();
             var driver = (IWebDriver)context["webdriver"];
-            string password = "zzz";
+            string password = "yyy";
             login.TypePassword(driver, password);
             Thread.Sleep(1000);
             //login.PressPasswordButton(driver);
