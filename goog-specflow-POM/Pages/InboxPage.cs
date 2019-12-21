@@ -13,7 +13,9 @@ namespace goog_specflow_POM.Pages
         readonly By inboxMailTopRow = By.XPath("//*[@role='main']/div[6]/div/div/div[2]/div/table/tbody/tr[1]");
         readonly By inboxMailTopSubject = By.XPath("//*[@role='main']/div[6]/div/div/div[2]/div/table/tbody/tr[1]/td/div/div/div/span/span");
         readonly By emailTextBody = By.XPath("//*[@style='display:']/div[2]/div[3]/div[3]/div/div");
-        readonly By emailBackToInbox = By.XPath("//*[@aria-label='Back to Inbox']");
+        readonly By emailBackToInbox = By.XPath("//*[@title='Back to Inbox']");
+        readonly By logOut = By.XPath("//*[text()='Sign out']");
+
         public InboxPage(IWebDriver driver)
         {
             this.driver = driver;
@@ -50,11 +52,13 @@ namespace goog_specflow_POM.Pages
         }
         public void ReturnToInbox(IWebDriver driver)
         {
-            driver.FindElement(emailBackToInbox).Click();
+            Console.WriteLine(emailBackToInbox);
+          driver.FindElement(emailBackToInbox).Click();
         }
         public void LogOut(IWebDriver driver)
         {
             driver.FindElement(accountName).Click();
+            driver.FindElement(logOut).Click();
         }
     }
 }

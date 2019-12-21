@@ -83,7 +83,7 @@ namespace goog_specflow_POM.utils
         public static void CloseDriver()
         {
             //Log.Debug("Closing driver...");
-            //driver.Quit();
+            driver.Quit();
             Driver = null;
         }
     }

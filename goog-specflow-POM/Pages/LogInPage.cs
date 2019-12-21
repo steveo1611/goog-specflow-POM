@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace goog_specflow_POM.Pages
 {
-    public class LogInPage
+    public class logIn
     {
         private readonly IWebDriver driver;
         readonly JObject fileReader = new ReadJSONFile().OpenJsonFile("CredentialsFilePath");
@@ -19,9 +19,9 @@ namespace goog_specflow_POM.Pages
         readonly By passwordButton = By.XPath("//*[@id='passwordNext']//span[text()='Next']");
         readonly By passwordPage = By.Name("password");
         readonly By homePage = By.XPath("//*[@title='Gmail'");
+        readonly By verifySignOut = By.XPath("//*[text()='Signed out']");
 
-
-        public LogInPage(IWebDriver driver)
+        public logIn(IWebDriver driver)
         {
             this.driver = driver;
         }
@@ -44,6 +44,20 @@ namespace goog_specflow_POM.Pages
         public void PressPasswordButton(IWebDriver driver)
         {
             driver.FindElement(passwordButton).Click();
+        }
+
+        public bool VerifyLogOut(IWebDriver driver)
+        {
+            try
+            {
+                var element = driver.FindElement(verifySignOut);
+                return element.Displayed;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
 
 /*        public Boolean VerifyHomePage(IWebDriver driver)

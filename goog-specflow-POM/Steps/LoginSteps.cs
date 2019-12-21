@@ -16,7 +16,7 @@ namespace goog_specflow_POM.Steps
         private readonly ScenarioContext context;
         private readonly FeatureContext featureContext;
         static IWebDriver driver = null;
-        LogInPage login = new LogInPage(driver);
+        logIn login = new logIn(driver);
         public LoginSteps(ScenarioContext injectedContext, FeatureContext _featureContext)
         {
             context = injectedContext;

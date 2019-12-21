@@ -15,6 +15,7 @@ namespace goog_specflow_POM.Steps
     {
         private readonly ScenarioContext context;
         static IWebDriver driver = null;
+        logIn logIn = new logIn(driver);
         InboxPage inbox = new InboxPage(driver);
         ComposeEmailPage compose = new ComposeEmailPage(driver);
        public SendandVerifyEmailSteps(ScenarioContext injectedContext )
@@ -88,6 +89,8 @@ namespace goog_specflow_POM.Steps
         {
             var driver = (IWebDriver)context["webdriver"];
             inbox.LogOut(driver);
+            Assert.IsTrue(logIn.VerifyLogOut(driver));
+            DriverFactory.CloseDriver();
         }
     }
 }
