@@ -12,7 +12,6 @@ namespace goog_specflow_POM.Pages
     public class logIn
     {
         private readonly IWebDriver driver;
-        readonly JObject fileReader = new ReadJSONFile().OpenJsonFile("CredentialsFilePath");
         readonly By userName_txtfield = By.XPath("//*[@id='identifierId']");
         readonly By userButton = By.XPath("//*[@id='identifierNext']/span/span");
         readonly By password_txtfield = By.XPath("//*[@id='password']//input[@name='password']");
@@ -27,12 +26,10 @@ namespace goog_specflow_POM.Pages
         }
         public void TypeUserName(IWebDriver driver, string userName)
         {
-            // var driver = ScenarioContext.Current.Get<IWebDriver>("webdriver");
             driver.FindElement(userName_txtfield).SendKeys(userName);
         }
         public void PressUserButton(IWebDriver driver)
         {
-           // driver.FindElements()
             driver.FindElement(userButton).Click();
         }
 
@@ -59,10 +56,5 @@ namespace goog_specflow_POM.Pages
                 return false;
             }
         }
-
-/*        public Boolean VerifyHomePage(IWebDriver driver)
-        {
-        }
-  */      
     }
 }

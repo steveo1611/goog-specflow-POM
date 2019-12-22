@@ -3,7 +3,6 @@ using OpenQA.Selenium;
 using System;
 using TechTalk.SpecFlow;
 using goog_specflow_POM.Pages;
-using goog_specflow_POM;
 using System.Threading;
 using goog_specflow_POM.utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -23,7 +22,6 @@ namespace goog_specflow_POM.Steps
              context = injectedContext;
         }
        static readonly DateTime stamp = DateTime.Now;
-
        public static DateTime Stamp => stamp;
                 
         //       readonly JObject fileReader = new ReadJSONFile().OpenJsonFile("configs\\Credentials.json");
@@ -69,7 +67,7 @@ namespace goog_specflow_POM.Steps
 
             var driver = (IWebDriver)context["webdriver"];
             Thread.Sleep(5000);
-           string subjectTitle = inbox.VerifySentEmailInInbox(driver);
+            string subjectTitle = inbox.VerifySentEmailInInbox(driver);
             Assert.AreEqual(subjectTitle, "THIS IS A TEST " + stamp);
 
         }
@@ -79,7 +77,6 @@ namespace goog_specflow_POM.Steps
         {
             var driver = (IWebDriver)context["webdriver"];
             string emailBody = inbox.OpenTopEmail(driver);
-            Console.WriteLine(emailBody);
             Assert.AreEqual(emailBody, "this is a test");
             inbox.ReturnToInbox(driver);
         }

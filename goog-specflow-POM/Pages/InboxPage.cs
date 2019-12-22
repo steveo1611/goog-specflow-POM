@@ -46,14 +46,13 @@ namespace goog_specflow_POM.Pages
 
         public string VerifySentEmailInInbox(IWebDriver driver)
         {
-          var element = driver.FindElement(inboxMailTopSubject);
+            var element = driver.FindElement(inboxMailTopSubject);
             return element.Text;
 
         }
         public void ReturnToInbox(IWebDriver driver)
         {
-            Console.WriteLine(emailBackToInbox);
-          driver.FindElement(emailBackToInbox).Click();
+            driver.FindElement(emailBackToInbox).Click();
         }
         public void LogOut(IWebDriver driver)
         {

@@ -8,6 +8,7 @@ using System.Configuration;
 using System.Threading;
 using TechTalk.SpecFlow;
 
+
 namespace goog_specflow_POM.Steps
 {
     [Binding]
@@ -15,14 +16,18 @@ namespace goog_specflow_POM.Steps
     {
         private readonly ScenarioContext context;
         private readonly FeatureContext featureContext;
+        private static readonly string CredentialsFilePath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().
+          Location) + "\\..\\..\\..\\configs\\Credentials.json";
+
         static IWebDriver driver = null;
         logIn login = new logIn(driver);
+       
+        readonly JObject fileReader = new ReadJSONFile().OpenJsonFile(CredentialsFilePath);
         public LoginSteps(ScenarioContext injectedContext, FeatureContext _featureContext)
         {
             context = injectedContext;
             featureContext = _featureContext;
         }
-    //    readonly JObject fileReader = new ReadJSONFile().OpenJsonFile("configs\\Credentials.json");
 
         [Given(@"I am on ""(.*)"" website")]
         public void IAmOnWebsite(string webSiteName)
@@ -32,19 +37,21 @@ namespace goog_specflow_POM.Steps
             {
                 webSiteName = ("https://www.google.com/gmail");
             }
-            var driver = (IWebDriver)context["webdriver"]; 
+            var driver = (IWebDriver)context["webdriver"];
             driver.Navigate().GoToUrl(webSiteName);
         }
-        
+
         [Given]
         public void I_enter_a_valid_USERNAME()
         {
-             var driver = (IWebDriver)context["webdriver"];
-            //string userName = fileReader[featureContext["Environment"].ToString()][userType]["userName"].ToString();
+            var driver = (IWebDriver)context["webdriver"];
+            //Console.WriteLine(CredentialsFilePath);
+            Console.WriteLine("Steve Hello1");
             string userName = "xxx";
             login.TypeUserName(driver, userName);
-            //Thread.Sleep(2000);
             login.PressUserButton(driver);
+            //string xuserName = fileReader["gmail"]["logincreds"]["userName"].ToString();
+            Console.WriteLine("Steve Hello2");
         }
         
         [Given]
@@ -52,10 +59,9 @@ namespace goog_specflow_POM.Steps
         {
             //string password = fileReader[featureContext["Environment"].ToString()][passwordType]["password"].ToString();
             var driver = (IWebDriver)context["webdriver"];
-            string password = "yyy";
+            string password = "zzz";
             login.TypePassword(driver, password);
             Thread.Sleep(1000);
-            //login.PressPasswordButton(driver);
         }
         
         [When]
@@ -65,7 +71,6 @@ namespace goog_specflow_POM.Steps
             login.PressPasswordButton(driver);
         }
         
-        //[Then(@"I verify i am logged in successfully")]
         [Then]
         public void Then_I_Verify_i_am_logged_in_successfully()
         {

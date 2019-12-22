@@ -21,13 +21,12 @@ namespace goog_specflow_POM
             Location) + "\\..\\..";
         private readonly ScenarioContext context;
         private readonly FeatureContext featureContext;
-        private static TestContext _testContextInstance;
 
-        public Hooks(ScenarioContext injectedContext, FeatureContext _featureContext, TestContext testContextInstance)
+
+        public Hooks(ScenarioContext injectedContext, FeatureContext _featureContext)
         {
             context = injectedContext;
             featureContext = _featureContext;
-            _testContextInstance = testContextInstance;
         }
 
         [BeforeScenario]

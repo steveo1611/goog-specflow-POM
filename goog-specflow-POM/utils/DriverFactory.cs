@@ -3,16 +3,13 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace goog_specflow_POM.utils
 {
     class DriverFactory
     {
         private static IWebDriver driver;
-       // private static readonly ILog Log = LogManager.GetLogger(typeof(DriverFactory));
         private static readonly string ProjectFilesPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\..\\..\\..";
 
         public static IWebDriver Driver
@@ -53,36 +50,29 @@ namespace goog_specflow_POM.utils
 
                 case "Chrome":
 
-                    //ChromeInstance.CloseChromeBrowserInstances();
-                    //ChromeInstance.CloseChromeDriverInstances();
-                    if (Driver == null)
+                     if (Driver == null)
                     {
-                        //Log.Debug("Initiating new driver...");
                         ChromeOptions options = new ChromeOptions();
                         options.AddArguments("chrome.switches", "--disable-extensions");
                         options.AddArguments("--start-maximized");
                         options.AddArguments("--incognito");
 
-                        //Log.Debug("Opening browser window...");
                         driver = new ChromeDriver(Path.Combine(ProjectFilesPath + "\\Drivers\\Chrome"), options);
                         driver.Manage().Window.Maximize();
                         driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-//                        driver.Manage().Cookies.DeleteAllCookies();
-                        //Log.Debug("Browser window opened...");
-
                     }
                     break;
             }
         }
-        public static void LoadApplication(string url)
+/*        public static void LoadApplication(string url)
         {
             Driver.Manage().Cookies.DeleteAllCookies();
             Driver.Navigate().GoToUrl(url);
         }
-
+*/
         public static void CloseDriver()
         {
-            //Log.Debug("Closing driver...");
+            Console.WriteLine("Closing driver...");
             driver.Quit();
             Driver = null;
         }

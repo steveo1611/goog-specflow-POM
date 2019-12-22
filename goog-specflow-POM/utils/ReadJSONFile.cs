@@ -9,6 +9,7 @@ namespace goog_specflow_POM.utils
 {
     class ReadJSONFile
     {
+
         /// <summary>
         /// Get the JSON object by reading a JSON file
         /// </summary>
