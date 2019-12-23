@@ -27,8 +27,7 @@ namespace goog_specflow_POM.Steps
        static readonly DateTime stamp = DateTime.Now;
        public static DateTime Stamp => stamp;
                 
-        //       readonly JObject fileReader = new ReadJSONFile().OpenJsonFile("configs\\Credentials.json");
-        
+         
         [Given(@"I successfully Log into GMail account")]
         public void GivenISuccessfullyLogIntoGMailAccount()
         {
@@ -52,13 +51,11 @@ namespace goog_specflow_POM.Steps
             string userName = fileReader["gmail"]["logincreds"]["userName"].ToString();
             string subject = fileReader["gmail"]["emailcontent"]["subject"].ToString();
             string bodytext = fileReader["gmail"]["emailcontent"]["bodytext"].ToString();
-            Console.WriteLine(subject);
-            Console.WriteLine(bodytext);
             inbox.SelectComposeButton(driver);
             Assert.IsTrue(compose.ValidateEmailOpen(driver));
             compose.EnterToEmail(driver, userName + "@gmail.com");
-            compose.EnterSubjectEmail(driver, "THIS IS A TEST " + stamp);
-            compose.EnterBodyText(driver, "this is a test");
+            compose.EnterSubjectEmail(driver, subject + stamp);
+            compose.EnterBodyText(driver, bodytext);
         }
         
         [When(@"Send email to myself")]
@@ -75,8 +72,9 @@ namespace goog_specflow_POM.Steps
 
             var driver = (IWebDriver)context["webdriver"];
             Thread.Sleep(5000);
+            string subject = fileReader["gmail"]["emailcontent"]["subject"].ToString();
             string subjectTitle = inbox.VerifySentEmailInInbox(driver);
-            Assert.AreEqual(subjectTitle, "THIS IS A TEST " + stamp);
+            Assert.AreEqual(subjectTitle, subject + stamp);
 
         }
         
@@ -85,7 +83,8 @@ namespace goog_specflow_POM.Steps
         {
             var driver = (IWebDriver)context["webdriver"];
             string emailBody = inbox.OpenTopEmail(driver);
-            Assert.AreEqual(emailBody, "this is a test");
+            string bodytext = fileReader["gmail"]["emailcontent"]["bodytext"].ToString();
+            Assert.AreEqual(emailBody, bodytext);
             inbox.ReturnToInbox(driver);
         }
         

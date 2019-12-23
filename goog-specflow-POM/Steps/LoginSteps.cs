@@ -3,6 +3,7 @@ using goog_specflow_POM.utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Configuration;
 using System.Threading;
@@ -21,7 +22,8 @@ namespace goog_specflow_POM.Steps
 
         static IWebDriver driver = null;
         logIn login = new logIn(driver);
-       
+        readonly common common = new common();
+
         readonly JObject fileReader = new ReadJSONFile().OpenJsonFile(CredentialsFilePath);
         public LoginSteps(ScenarioContext injectedContext, FeatureContext _featureContext)
         {
@@ -56,7 +58,6 @@ namespace goog_specflow_POM.Steps
             var driver = (IWebDriver)context["webdriver"];
             string password = fileReader["gmail"]["logincreds"]["password"].ToString();
             login.TypePassword(driver, password);
-            Thread.Sleep(1000);
         }
         
         [When]
@@ -70,9 +71,10 @@ namespace goog_specflow_POM.Steps
         public void Then_I_Verify_i_am_logged_in_successfully()
         {
             var driver = (IWebDriver)context["webdriver"];
-            Thread.Sleep(5000);
+            common.WaitForPageUrl(driver, "https://mail.google.com/mail/u/0/#inbox");
             string home = driver.Url;
             Assert.IsTrue(home == "https://mail.google.com/mail/u/0/#inbox", "Failed to Login...");
         }
+       
     }
 }

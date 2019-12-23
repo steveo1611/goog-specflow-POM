@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using goog_specflow_POM.utils;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,6 +17,7 @@ namespace goog_specflow_POM.Pages
         readonly By emailBackToInbox = By.XPath("//*[@title='Back to Inbox']");
         readonly By logOut = By.XPath("//*[text()='Sign out']");
 
+        readonly common common = new common();
         public InboxPage(IWebDriver driver)
         {
             this.driver = driver;
@@ -52,6 +54,7 @@ namespace goog_specflow_POM.Pages
         }
         public void ReturnToInbox(IWebDriver driver)
         {
+            common.WaitForElementToBeClickable(driver, emailBackToInbox);
             driver.FindElement(emailBackToInbox).Click();
         }
         public void LogOut(IWebDriver driver)

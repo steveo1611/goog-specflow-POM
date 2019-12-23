@@ -6,6 +6,8 @@ using System.Text;
 using goog_specflow_POM.utils;
 using TechTalk.SpecFlow;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium.Support.UI;
+using System.Threading;
 
 namespace goog_specflow_POM.Pages
 {
@@ -24,6 +26,8 @@ namespace goog_specflow_POM.Pages
         {
             this.driver = driver;
         }
+
+        readonly common common = new common();
         public void TypeUserName(IWebDriver driver, string userName)
         {
             driver.FindElement(userName_txtfield).SendKeys(userName);
@@ -40,6 +44,8 @@ namespace goog_specflow_POM.Pages
 
         public void PressPasswordButton(IWebDriver driver)
         {
+             common.WaitForElementToBeClickable(driver, passwordButton);
+            Thread.Sleep(500); 
             driver.FindElement(passwordButton).Click();
         }
 
@@ -56,5 +62,6 @@ namespace goog_specflow_POM.Pages
                 return false;
             }
         }
+        
     }
 }
