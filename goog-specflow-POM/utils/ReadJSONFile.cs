@@ -32,7 +32,8 @@ namespace goog_specflow_POM.utils
             try
             {
                 //string baseDirectoryPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-                string filePath = ConfigurationManager.AppSettings.GetValues(fileKey)[0];
+                //string filePath = ConfigurationManager.AppSettings.GetValues(fileKey)[0];
+                string filePath = fileKey;
                 StreamReader file = File.OpenText(filePath);
                 var reader = new JsonTextReader(file);
                 JObject jsonobject = (JObject)JToken.ReadFrom(reader);

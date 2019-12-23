@@ -17,7 +17,10 @@ namespace goog_specflow_POM.Steps
         logIn logIn = new logIn(driver);
         InboxPage inbox = new InboxPage(driver);
         ComposeEmailPage compose = new ComposeEmailPage(driver);
-       public SendandVerifyEmailSteps(ScenarioContext injectedContext )
+        private static readonly string CredentialsFilePath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().
+   Location) + "\\..\\..\\..\\configs\\Credentials.json";
+        readonly JObject fileReader = new ReadJSONFile().OpenJsonFile(CredentialsFilePath);
+        public SendandVerifyEmailSteps(ScenarioContext injectedContext )
         {
              context = injectedContext;
         }
@@ -46,9 +49,14 @@ namespace goog_specflow_POM.Steps
         public void WhenIComposeNewEmail()
         {
             var driver = (IWebDriver)context["webdriver"];
+            string userName = fileReader["gmail"]["logincreds"]["userName"].ToString();
+            string subject = fileReader["gmail"]["emailcontent"]["subject"].ToString();
+            string bodytext = fileReader["gmail"]["emailcontent"]["bodytext"].ToString();
+            Console.WriteLine(subject);
+            Console.WriteLine(bodytext);
             inbox.SelectComposeButton(driver);
             Assert.IsTrue(compose.ValidateEmailOpen(driver));
-            compose.EnterToEmail(driver, "xxx" + "@gmail.com");
+            compose.EnterToEmail(driver, userName + "@gmail.com");
             compose.EnterSubjectEmail(driver, "THIS IS A TEST " + stamp);
             compose.EnterBodyText(driver, "this is a test");
         }

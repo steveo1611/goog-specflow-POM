@@ -45,21 +45,16 @@ namespace goog_specflow_POM.Steps
         public void I_enter_a_valid_USERNAME()
         {
             var driver = (IWebDriver)context["webdriver"];
-            //Console.WriteLine(CredentialsFilePath);
-            Console.WriteLine("Steve Hello1");
-            string userName = "xxx";
+            string userName = fileReader["gmail"]["logincreds"]["userName"].ToString();
             login.TypeUserName(driver, userName);
             login.PressUserButton(driver);
-            //string xuserName = fileReader["gmail"]["logincreds"]["userName"].ToString();
-            Console.WriteLine("Steve Hello2");
         }
         
         [Given]
         public void Given_I_enter_a_Valid_PASSWORD()
         {
-            //string password = fileReader[featureContext["Environment"].ToString()][passwordType]["password"].ToString();
             var driver = (IWebDriver)context["webdriver"];
-            string password = "zzz";
+            string password = fileReader["gmail"]["logincreds"]["password"].ToString();
             login.TypePassword(driver, password);
             Thread.Sleep(1000);
         }
